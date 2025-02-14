@@ -41,7 +41,7 @@ interface TextAreaWithGlobalScopeProps {
 }
 
 export const TextAreaWithGlobalScope = connect((props: TextAreaWithGlobalScopeProps) => {
-  const { supportsLineBreak, password, number, boolean, ...others } = props;
+  const { supportsLineBreak, password, number, boolean, input, ...others } = props;
   const scope = useEnvironmentVariableOptions(props.scope);
   const fieldNames = { value: 'name', label: 'title' };
 
@@ -57,5 +57,10 @@ export const TextAreaWithGlobalScope = connect((props: TextAreaWithGlobalScopePr
   if (boolean) {
     return <Variable.Input {...props} scope={scope} fieldNames={fieldNames} />;
   }
+
+  if (input) {
+    return <Variable.Input {...others} scope={scope} fieldNames={fieldNames} />;
+  }
+
   return <TextArea {...others} scope={scope} fieldNames={fieldNames} />;
 }, mapReadPretty(Input.ReadPretty));
