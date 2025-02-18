@@ -26,9 +26,10 @@ export type InputReadPrettyComposed = {
   TextArea: React.FC<TextAreaReadPrettyProps>;
   Html: React.FC<HtmlReadPrettyProps>;
   JSON: React.FC<JSONTextAreaReadPrettyProps>;
+  Location: React.FC<InputReadPrettyProps>;
 };
 
-export const ReadPretty: InputReadPrettyComposed = () => null;
+export const ReadPretty: InputReadPrettyComposed = {} as InputReadPrettyComposed;
 
 export interface InputReadPrettyProps {
   value?: any;
@@ -291,6 +292,7 @@ ReadPretty.JSON = (props: JSONTextAreaReadPrettyProps) => {
 };
 
 ReadPretty.Input = withPopupWrapper(ReadPretty.Input);
+ReadPretty.Location = withPopupWrapper(ReadPretty.Input); // Assuming Location uses the same component as Input
 ReadPretty.TextArea = withPopupWrapper(ReadPretty.TextArea);
 ReadPretty.Html = withPopupWrapper(ReadPretty.Html);
 ReadPretty.Preview = withPopupWrapper(ReadPretty.Preview);

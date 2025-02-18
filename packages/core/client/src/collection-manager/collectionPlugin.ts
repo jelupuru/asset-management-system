@@ -52,6 +52,7 @@ import {
   UpdatedByFieldInterface,
   UrlFieldInterface,
   UUIDFieldInterface,
+  LocationFieldInterface,
 } from './interfaces';
 import {
   GeneralCollectionTemplate,
@@ -167,6 +168,7 @@ export class CollectionPlugin extends Plugin {
       UnixTimestampFieldInterface,
       DateFieldInterface,
       DatetimeNoTzFieldInterface,
+      LocationFieldInterface,
     ]);
   }
 

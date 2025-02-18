@@ -46,5 +46,6 @@ export * from './nanoid';
 export * from './unixTimestamp';
 export * from './dateOnly';
 export * from './datetimeNoTz';
+export * from './location';
 
 export { getUniqueKeyFromCollection } from './utils';

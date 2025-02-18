@@ -7,11 +7,11 @@
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { connect, mapProps, mapReadPretty } from '@formily/react';
-import { Input as AntdInput } from 'antd';
+import { Input as AntdInput, Button } from 'antd';
 import { InputProps, TextAreaProps } from 'antd/es/input';
-import React from 'react';
+import React, { useState } from 'react';
 import { JSONTextAreaProps, Json } from './Json';
 import { InputReadPrettyComposed, ReadPretty } from './ReadPretty';
 
@@ -22,6 +22,42 @@ type ComposedInput = React.FC<InputProps> & {
   TextArea: React.FC<TextAreaProps> & { ReadPretty: InputReadPrettyComposed['TextArea'] };
   URL: React.FC<InputProps> & { ReadPretty: InputReadPrettyComposed['URL'] };
   JSON: React.FC<JSONTextAreaProps> & { ReadPretty: InputReadPrettyComposed['JSON'] };
+  Location: React.FC<InputProps> & { ReadPretty: InputReadPrettyComposed['Location'] };
+};
+
+const LocationInput: React.FC<InputProps> = (props) => {
+  const [location, setLocation] = useState('');
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          setLocation(`${lat}, ${lng}`);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+        },
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
+  return (
+    <AntdInput
+      {...props}
+      value={location}
+      readOnly
+      placeholder="Latitude, Longitude"
+      addonAfter={
+        <Button type="primary" onClick={getLocation} icon={<EnvironmentOutlined />}>
+          Get Location
+        </Button>
+      }
+    />
+  );
 };
 
 export const Input: ComposedInput = Object.assign(
@@ -51,6 +87,7 @@ export const Input: ComposedInput = Object.assign(
     ),
     URL: connect(AntdInput, mapReadPretty(ReadPretty.URL)),
     JSON: connect(Json, mapReadPretty(ReadPretty.JSON)),
+    Location: connect(LocationInput, mapReadPretty(ReadPretty.Input)), // Added Location input type
     ReadPretty: ReadPretty.Input,
     Preview: ReadPretty.Preview,
   } as unknown as ComposedInput,
