@@ -21,7 +21,8 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs"
+      "module": "commonjs",
+      "skipLibCheck": true
     }
   },
   "include": [".dumi/**/*", ".dumirc.ts", "packages/**/*", "playwright.config.ts", "vitest.config.mts"],
