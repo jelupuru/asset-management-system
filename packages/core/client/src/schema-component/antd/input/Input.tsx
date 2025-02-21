@@ -77,7 +77,6 @@ const LocationInput: React.FC<InputProps> = (props) => {
     <AntdInput
       {...props}
       value={location}
-      readOnly
       placeholder="Latitude, Longitude"
       addonAfter={
         <Button type="primary" onClick={getLocation} icon={<EnvironmentOutlined />}>
