@@ -46,7 +46,7 @@ const LocationInput: React.FC<InputProps> = (props) => {
   // };
 
   const getLocation = () => {
-    fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_GOOGLE_MAPS_API_KEY", {
+    fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyATlK8B6RftO7M2EwMnxWvHzYBqezrE1Kg", {
       method: "POST",
       headers: { "Content-Type": "application/json" }
   })
