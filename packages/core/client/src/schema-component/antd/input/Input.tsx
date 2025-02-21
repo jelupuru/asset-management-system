@@ -45,6 +45,8 @@ const LocationInput: React.FC<InputProps> = (props) => {
   //   }
   // };
 
+  const { value, onChange, } = props;
+
   const getLocation = () => {
     fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyATlK8B6RftO7M2EwMnxWvHzYBqezrE1Kg", {
       method: "POST",
@@ -54,6 +56,8 @@ const LocationInput: React.FC<InputProps> = (props) => {
       .then(data => {
           console.log("Latitude:", data.location.lat);
           console.log("Longitude:", data.location.lng);
+          const event = { target: { value: `${data.location.lat}, ${data.location.lng}` } } as React.ChangeEvent<HTMLInputElement>;
+          onChange(event);
           setLocation(`${data.location.lat}, ${data.location.lng}`);
       })
       .catch(error => console.error("Error:", error));
@@ -115,7 +119,7 @@ export const Input: ComposedInput = Object.assign(
     ),
     URL: connect(AntdInput, mapReadPretty(ReadPretty.URL)),
     JSON: connect(Json, mapReadPretty(ReadPretty.JSON)),
-    Location: connect(LocationInput, mapReadPretty(ReadPretty.Location)), // Added Location input type
+    Location: connect(LocationInput, mapReadPretty(ReadPretty.Input)), // Added Location input type
     ReadPretty: ReadPretty.Input,
     Preview: ReadPretty.Preview,
   } as unknown as ComposedInput,
