@@ -28,21 +28,37 @@ type ComposedInput = React.FC<InputProps> & {
 const LocationInput: React.FC<InputProps> = (props) => {
   const [location, setLocation] = useState('');
 
+  // const getLocation = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const lat = position.coords.latitude;
+  //         const lng = position.coords.longitude;
+  //         setLocation(`${lat}, ${lng}`);
+  //       },
+  //       (error) => {
+  //         console.error('Error getting location:', error);
+  //       },
+  //     );
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //   }
+  // };
+
   const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          setLocation(`${lat}, ${lng}`);
-        },
-        (error) => {
-          console.error('Error getting location:', error);
-        },
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
+    fetch("https://ipinfo.io/json")
+      .then(response => response.json())
+      .then(data => {
+        console.log("IP Address:", data.ip);
+        console.log("Location:", data.city, data.region, data.country);
+        console.log("Coordinates:", data.loc); // Format: "latitude,longitude"
+  
+        const [latitude, longitude] = data.loc.split(",");
+        console.log("Latitude:", latitude);
+        console.log("Longitude:", longitude);
+        setLocation(`${latitude}, ${longitude}`);
+      })
+      .catch(error => console.error("Error fetching IP location:", error));
   };
 
   return (
