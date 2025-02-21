@@ -506,7 +506,7 @@ export const InternalAdminLayout = () => {
             <ConfigProvider theme={theme}>
               <Divider type="vertical" />
             </ConfigProvider>
-            <Help />
+            {/* <Help /> */}
             <CurrentUser />
           </div>
         </div>

@@ -21,8 +21,8 @@ export const PoweredBy = () => {
   const customBrandPlugin: any = usePlugin('@nocobase/plugin-custom-brand');
   const data = useCurrentAppInfo();
   const urls = {
-    'en-US': 'https://www.nocobase.com',
-    'zh-CN': 'https://www.nocobase.com/cn/',
+    'en-US': 'https://www.mayratechnologies.com',
+     'zh-CN': 'https://www.mayratechnologies.com/cn/',
   };
   const style = css`
     text-align: center;
@@ -42,7 +42,7 @@ export const PoweredBy = () => {
       dangerouslySetInnerHTML={{
         __html: parseHTML(
           customBrandPlugin?.options?.options?.brand ||
-            `Powered by <a href="${urls[i18n.language] || urls['en-US']}" target="_blank">NocoBase</a>`,
+            `Powered by <a href="${urls[i18n.language] || urls['en-US']}" target="_blank">Mayra Technologies</a>`,
           { appVersion },
         ),
       }}
