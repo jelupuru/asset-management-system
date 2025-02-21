@@ -78,6 +78,7 @@ const LocationInput: React.FC<InputProps> = (props) => {
       {...props}
       value={location}
       placeholder="Latitude, Longitude"
+      onChange={(e) => setLocation(e.target.value)}
       addonAfter={
         <Button type="primary" onClick={getLocation} icon={<EnvironmentOutlined />}>
           Get Location
@@ -114,7 +115,7 @@ export const Input: ComposedInput = Object.assign(
     ),
     URL: connect(AntdInput, mapReadPretty(ReadPretty.URL)),
     JSON: connect(Json, mapReadPretty(ReadPretty.JSON)),
-    Location: connect(LocationInput, mapReadPretty(ReadPretty.Input)), // Added Location input type
+    Location: connect(LocationInput, mapReadPretty(ReadPretty.Location)), // Added Location input type
     ReadPretty: ReadPretty.Input,
     Preview: ReadPretty.Preview,
   } as unknown as ComposedInput,
