@@ -22,7 +22,7 @@ export const getCurrentPosition: () => Promise<{ lat: number; lng: number }> = (
   return new Promise((resolve) => {
     const defaultLatLng = () => {
       // google company lat and lng
-      resolve({ lat: 37.4224764, lng: -122.0842499 });
+      resolve({ lat: 17.436258513036584, lng: 78.45526345335591 });
     };
 
     if (navigator.geolocation) {
