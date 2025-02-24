@@ -407,7 +407,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
       <div
         className={css`
           position: relative;
-          height: ${height || 500}px !important;
+          height: ${height || 150}px !important;
         `}
       >
         {!map.current && (
@@ -425,13 +425,83 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
         )}
         {!disabled ? (
           <>
-            {map.current && <Search toCenter={toCenter} mapRef={map} />}
+            <div className="ant-row ant-row-space-between ant-row-middle">
+                <div
+                className={css`
+                position: absolute;
+                top: 0px;
+                left: 200px;
+                z-index: 10;
+                display: flex;
+                gap: 10px;
+                background: white;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                `}
+                >
+                <label>
+                  {t('Latitude')}
+                  <input
+                  type="text"
+                  placeholder={t('Latitude ')}
+                  value={value ? value[1] : ''}
+                  onChange={(e) => {
+                  const lat = parseFloat(e.target.value);
+                  if (!isNaN(lat) && value) {
+                  onChange?.([value[0], lat]);
+                  }
+                  }}
+                  disabled={disabled}
+                  />
+                </label>
+                <label>
+                  {t('Longitude ')}
+                  <input
+                  type="text"
+                  placeholder={t('Longitude')}
+                  value={value ? value[0] : ''}
+                  onChange={(e) => {
+                  const lng = parseFloat(e.target.value);
+                  if (!isNaN(lng) && value) {
+                  onChange?.([lng, value[1]]);
+                  }
+                  }}
+                  disabled={disabled}
+                  />
+                </label>
+                </div>
+              {map.current && (
+              <Button
+              className={css`
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                z-index: 10;
+                display: flex;
+                gap: 10px;
+              `}
+                onClick={async () => {
+                const position = await getCurrentPosition();
+                onChange?.([position.lng, position.lat]);
+                toCenter(position);
+                }}
+                type="primary"
+                shape="round"
+                size="large"
+              >
+                {t('Get Current Location')}
+              </Button>
+              )}
+            </div>
             <div
               className={css`
                 position: absolute;
                 bottom: 80px;
                 right: 20px;
                 z-index: 10;
+                display: none;
+
               `}
             >
               <Button
@@ -451,6 +521,8 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
                   left: 10px;
                   z-index: 2;
                   pointer-events: none;
+                display: none;
+
                 `}
               >
                 <Alert
@@ -465,6 +537,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
                 bottom: 20px;
                 right: 20px;
                 z-index: 2;
+                display: none;
               `}
             >
               <Button
