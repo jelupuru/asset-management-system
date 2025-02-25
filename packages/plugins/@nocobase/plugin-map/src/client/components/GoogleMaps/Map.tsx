@@ -482,18 +482,20 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
                     gap: 10px;
                   `}
                   onClick={async () => {
-                    // if (navigator.geolocation) {
-                    //   navigator.geolocation.getCurrentPosition(
-                    //     (position) => {
-                    //       const { latitude, longitude } = position.coords;
-                    //       onChange?.([longitude, latitude]);
-                    //       toCenter({ lat: latitude, lng: longitude });
-                    //     },
-                    //     (error) => {
-                    //       console.error('Error getting current position:', error);
-                    //     },
-                    //   );
-                    // } else
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                          const { latitude, longitude } = position.coords;
+                          onChange?.([longitude, latitude]);
+                          toCenter({ lat: latitude, lng: longitude });
+                          console.log('Latitude:', latitude);
+                          console.log('Longitude:', longitude);
+                        },
+                        (error) => {
+                          console.error('Error getting current position:', error);
+                        },
+                      );
+                    } else
                      {
                       fetch(
                         'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyATlK8B6RftO7M2EwMnxWvHzYBqezrE1Kg',
