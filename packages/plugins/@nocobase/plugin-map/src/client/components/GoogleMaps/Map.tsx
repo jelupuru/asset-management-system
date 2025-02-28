@@ -99,6 +99,21 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     const api = useAPIClient();
     const { modal } = App.useApp();
     const height = useMapHeight();
+    const [arcgisOverlay, setArcgisOverlay] = useState<google.maps.GroundOverlay | null>(null);
+
+    const addArcgisOverlay = useMemoizedFn(() => {
+      if (map.current) {
+        const arcgisImageUrl = `https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer/export?bbox=78.0,17.0,79.0,18.0&bboxSR=4326&imageSR=4326&size=1024,1024&format=png&transparent=true&f=image`;
+        const bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(17.0, 78.0),
+          new google.maps.LatLng(18.0, 79.0)
+        );
+
+        const overlay = new google.maps.GroundOverlay(arcgisImageUrl, bounds);
+        overlay.setMap(map.current);
+        setArcgisOverlay(overlay);
+      }
+    });
 
     useEffect(() => {
       if (map.current) {
@@ -337,6 +352,8 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
           });
           setErrMessage('');
           forceUpdate([]);
+          addArcgisOverlay(); // Add ArcGIS overlay when the map is initialized
+
         })
         .catch((err) => {
           if (err instanceof Error) {
