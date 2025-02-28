@@ -393,7 +393,7 @@ console.log('GoogleMapsComponent', dataSource);
       } catch (err) {
           setError("Failed to load ArcGIS: " + (err as Error).message);
       }
-  }, [zoom]);
+  }, [zoom, dataSource]);
     // useEffect(() => {
     //   if (!accessKey || map.current || !mapContainerRef.current) return;
     //   let loader: Loader;
