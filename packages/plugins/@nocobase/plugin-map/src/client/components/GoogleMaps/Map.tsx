@@ -21,6 +21,14 @@ import { MapEditorType } from '../../types';
 import { useMapHeight } from '../hook';
 import { Search } from './Search';
 import { getCurrentPosition, getIcon } from './utils';
+import Map from '@arcgis/core/Map.js';
+import MapView from '@arcgis/core/views/MapView.js';
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer.js';
+import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer.js';
+import Graphic from '@arcgis/core/Graphic.js';
+import Sketch from '@arcgis/core/widgets/Sketch.js';
+import MapImageLayer from '@arcgis/core/layers/MapImageLayer';
+import Point from '@arcgis/core/geometry/Point';
 
 export type OverlayOptions = google.maps.PolygonOptions & google.maps.MarkerOptions & google.maps.PolylineOptions;
 
@@ -84,13 +92,14 @@ export interface GoogleMapForwardedRefProps {
   errMessage?: string;
 }
 
-export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, GoogleMapsComponentProps>(
-  (props, ref) => {
-    const { value, onChange, block = false, readonly, disabled = block, zoom = 13, overlayCommonOptions } = props;
+export const GoogleMapsComponent = React.forwardRef(
+  (props: any, ref) => {
+    const { value, onChange, block = false, readonly, disabled = block, zoom = 13, overlayCommonOptions, dataSource } = props;
     const { accessKey } = useMapConfiguration(props.mapType) || {};
     const { t } = useMapTranslation();
     const { getField } = useCollection_deprecated();
     const fieldSchema = useFieldSchema();
+    console.log('fieldSchema', fieldSchema);
     const drawingManagerRef = useRef<google.maps.drawing.DrawingManager>();
     const map = useRef<google.maps.Map>();
     const overlayRef = useRef<google.maps.Marker | google.maps.Polygon | google.maps.Polyline | google.maps.Circle>();
@@ -99,31 +108,17 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     const api = useAPIClient();
     const { modal } = App.useApp();
     const height = useMapHeight();
-    const [arcgisOverlay, setArcgisOverlay] = useState<google.maps.GroundOverlay | null>(null);
-
-    const addArcgisOverlay = useMemoizedFn(() => {
-      if (map.current) {
-        const arcgisImageUrl = `https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer/export?bbox=78.0,17.0,79.0,18.0&bboxSR=4326&imageSR=4326&size=1024,1024&format=png&transparent=true&f=image`;
-        const bounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(17.0, 78.0),
-          new google.maps.LatLng(18.0, 79.0)
-        );
-
-        const overlay = new google.maps.GroundOverlay(arcgisImageUrl, bounds);
-        overlay.setMap(map.current);
-        setArcgisOverlay(overlay);
-      }
-    });
-
-    useEffect(() => {
-      if (map.current) {
-        map.current.setZoom(zoom);
-      }
-    }, [zoom]);
+console.log('GoogleMapsComponent', dataSource);
+    // useEffect(() => {
+    //   if (map.current) {
+    //     map.current.setZoom(zoom);
+    //   }
+    // }, [zoom]);
 
     const type = useMemo<MapEditorType>(() => {
       if (props.type) return props.type;
       const collectionField = getField(fieldSchema?.name);
+      console.log('collectionField', collectionField);
       return collectionField?.interface;
     }, [props?.type, fieldSchema?.name]);
 
@@ -179,10 +174,10 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     });
 
     const toCenter = useMemoizedFn((position) => {
-      if (map.current && position) {
-        map.current?.setCenter(position);
-        map.current?.setZoom(zoom);
-      }
+      // if (map.current && position) {
+      //   map.current?.setCenter(position);
+      //   map.current?.setZoom(zoom);
+      // }
     });
 
     const setupOverlay = useMemoizedFn((nextOverlay: typeof overlayRef.current) => {
@@ -192,22 +187,22 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     });
 
     const setFitView = useMemoizedFn((overlays: google.maps.MVCObject[]) => {
-      const bounds = new google.maps.LatLngBounds();
+      // const bounds = new google.maps.LatLngBounds();
 
-      overlays.forEach((overlay) => {
-        if (overlay instanceof google.maps.Marker) {
-          bounds.extend(overlay.getPosition());
-        } else if (overlay instanceof google.maps.Polyline || overlay instanceof google.maps.Polygon) {
-          const path = overlay.getPath();
-          for (let i = 0; i < path.getLength(); i++) {
-            bounds.extend(path.getAt(i));
-          }
-        } else if (overlay instanceof google.maps.Circle) {
-          bounds.union(overlay.getBounds());
-        }
-      });
+      // overlays.forEach((overlay) => {
+      //   if (overlay instanceof google.maps.Marker) {
+      //     bounds.extend(overlay.getPosition());
+      //   } else if (overlay instanceof google.maps.Polyline || overlay instanceof google.maps.Polygon) {
+      //     const path = overlay.getPath();
+      //     for (let i = 0; i < path.getLength(); i++) {
+      //       bounds.extend(path.getAt(i));
+      //     }
+      //   } else if (overlay instanceof google.maps.Circle) {
+      //     bounds.union(overlay.getBounds());
+      //   }
+      // });
 
-      map.current?.setCenter?.(bounds.getCenter());
+      // map.current?.setCenter?.(bounds.getCenter());
     });
 
     const onFocusOverlay = () => {
@@ -217,54 +212,54 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     };
 
     const onMapChange = useMemoizedFn((target: typeof overlayRef.current, onlyChange = false) => {
-      let nextValue = null;
+      // let nextValue = null;
 
-      if (type === 'point') {
-        const { lat, lng } = (target as google.maps.Marker).getPosition();
-        nextValue = [lng(), lat()];
-      } else if (type === 'polygon' || type === 'lineString') {
-        nextValue = (target as google.maps.Polyline)
-          .getPath()
-          .getArray()
-          .map((item) => [item.lng(), item.lat()]);
-        if (nextValue.length < 2) {
-          return;
-        }
-      } else if (type === 'circle') {
-        const center = (target as google.maps.Circle).getCenter();
-        const radius = (target as google.maps.Circle).getRadius();
-        nextValue = [center.lng(), center.lat(), radius];
-      }
+      // if (type === 'point') {
+      //   const { lat, lng } = (target as google.maps.Marker).getPosition();
+      //   nextValue = [lng(), lat()];
+      // } else if (type === 'polygon' || type === 'lineString') {
+      //   nextValue = (target as google.maps.Polyline)
+      //     .getPath()
+      //     .getArray()
+      //     .map((item) => [item.lng(), item.lat()]);
+      //   if (nextValue.length < 2) {
+      //     return;
+      //   }
+      // } else if (type === 'circle') {
+      //   const center = (target as google.maps.Circle).getCenter();
+      //   const radius = (target as google.maps.Circle).getRadius();
+      //   nextValue = [center.lng(), center.lat(), radius];
+      // }
 
-      if (!onlyChange) {
-        setupOverlay(target);
-      }
-      onChange?.(nextValue);
+      // if (!onlyChange) {
+      //   setupOverlay(target);
+      // }
+      // onChange?.(nextValue);
     });
 
     const createDraw = useMemoizedFn((onlyCreate = false, additionalOptions?: OverlayOptions) => {
-      const currentOptions = {
-        ...commonOptions,
-        ...additionalOptions,
-        map: map.current,
-      };
-      drawingManagerRef.current = new google.maps.drawing.DrawingManager({
-        drawingMode: drawingMode.current,
-        drawingControl: false,
-        markerOptions: { ...currentOptions, icon: getIcon(defaultImage) },
-        polygonOptions: currentOptions,
-        polylineOptions: currentOptions,
-        circleOptions: currentOptions,
-        map: map.current,
-      });
+      // const currentOptions = {
+      //   ...commonOptions,
+      //   ...additionalOptions,
+      //   map: map.current,
+      // };
+      // drawingManagerRef.current = new google.maps.drawing.DrawingManager({
+      //   drawingMode: drawingMode.current,
+      //   drawingControl: false,
+      //   markerOptions: { ...currentOptions, icon: getIcon(defaultImage) },
+      //   polygonOptions: currentOptions,
+      //   polylineOptions: currentOptions,
+      //   circleOptions: currentOptions,
+      //   map: map.current,
+      // });
 
-      if (!onlyCreate) {
-        drawingManagerRef.current.addListener('overlaycomplete', (event: { type: string; overlay: unknown }) => {
-          const overlay = event.overlay as google.maps.Marker;
-          onMapChange(overlay);
-        });
-      }
-      return drawingManagerRef.current;
+      // if (!onlyCreate) {
+      //   drawingManagerRef.current.addListener('overlaycomplete', (event: { type: string; overlay: unknown }) => {
+      //     const overlay = event.overlay as google.maps.Marker;
+      //     onMapChange(overlay);
+      //   });
+      // }
+      // return drawingManagerRef.current;
     });
 
     const getOverlay = useMemoizedFn((t = type, v = value, o?: OverlayOptions) => {
@@ -285,6 +280,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
       }
 
       const overlay = new google.maps[mapping.overlay](options);
+      console.log('overlay', overlay);
       return overlay;
     });
 
@@ -294,85 +290,167 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
         ...o,
         map: map.current,
       }) as google.maps.Polyline;
+      console.log('nextOverlay', nextOverlay);
       return nextOverlay;
     });
+    const [error, setError] = useState('');
+    const arcgisServiceUrl = "https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer";
+    const logoIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'; // Define the logoIcon variable with the correct path
 
     // edit mode
     useEffect(() => {
-      if (!value && map.current) {
-        toRemoveOverlay();
-        drawingManagerRef?.current?.setDrawingMode?.(drawingMode.current);
-        onChange?.(null);
-      }
-      if (!map.current) return;
-      if (!value || (!readonly && overlayRef.current)) {
-        return;
-      }
-      const nextOverlay = setOverlay();
-      setupOverlay(nextOverlay);
-      // Focus on the overlay
-      setFitView([nextOverlay]);
+      // if (!value && map.current) {
+      //   toRemoveOverlay();
+      //   drawingManagerRef?.current?.setDrawingMode?.(drawingMode.current);
+      //   onChange?.(null);
+      // }
+      // if (!map.current) return;
+      // if (!value || (!readonly && overlayRef.current)) {
+      //   return;
+      // }
+      // const nextOverlay = setOverlay();
+      // setupOverlay(nextOverlay);
+      // // Focus on the overlay
+      // setFitView([nextOverlay]);
     }, [value, needUpdateFlag, type, disabled, readonly, setOverlay, setFitView, setupOverlay]);
-
     useEffect(() => {
-      if (!accessKey || map.current || !mapContainerRef.current) return;
-      let loader: Loader;
+      if (!mapContainerRef.current) return;
+
       try {
-        loader = new Loader({
-          apiKey: accessKey,
-          version: 'weekly',
-          language: api.auth.getLocale(),
-        });
-      } catch (err) {
-        setErrMessage(t('Load google maps failed, Please check the Api key and refresh the page'));
-        return;
-      }
+         // Create the GHMC layer
+  const ghmcLayer = new MapImageLayer({
+    url: 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer',
+    id: 'ghmc-layer',
+    opacity: 1.0,
+  });
+  const map = new Map({
+    basemap: 'topo-vector',
+    layers: [ghmcLayer],
+  });
+         
 
-      // google maps api error
-      const error = console.error;
-      console.error = (err, ...args) => {
-        if (err?.includes('InvalidKeyMapError')) {
-          setErrMessage(t('Load google maps failed, Please check the Api key and refresh the page'));
-        }
-        error(err, ...args);
-      };
-
-      Promise.all([loader.importLibrary('drawing'), loader.importLibrary('core'), loader.importLibrary('geometry')])
-        .then(async (res) => {
-          const center = await getCurrentPosition();
-          map.current = new google.maps.Map(mapContainerRef.current, {
-            zoom,
-            center,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoomControl: false,
-            streetViewControl: false,
-            panControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
+          const view = new MapView({
+              container: mapContainerRef.current,
+              map: map,
+              zoom: zoom,
+              center: [78.5, 17.5],
           });
-          setErrMessage('');
-          forceUpdate([]);
-          addArcgisOverlay(); // Add ArcGIS overlay when the map is initialized
 
-        })
-        .catch((err) => {
-          if (err instanceof Error) {
-            setErrMessage(err.message);
-            return;
-          }
-        });
+      
 
-      return () => {
-        map.current?.unbindAll();
-        map.current = null;
-        drawingManagerRef.current?.unbindAll();
-      };
-    }, [accessKey, api.auth, type, zoom]);
+          view.when(() => {
+            // ghmcLayer.when(() => {
+            //   view.goTo(ghmcLayer.fullExtent).catch((error) => console.error(error));
+            // });
+          });
+      
+          // ✅ Create Graphics for Markers
+          const places = dataSource.map(item => ({
+            title: item.name,
+            latitude: item.location.split(", ")[0],
+            longitude: item.location.split(", ")[1],
+            description: `This is ${item.name}, located in ${item.zone}, ${item.circle}, ${item.ward}.`,
+          }));
+      
+          const createGraphic = (place: { title: string; longitude: number; latitude: number; description: string }) => {
+            const point = new Point({
+              longitude: place.longitude,
+              latitude: place.latitude,
+            });
+      
+            const symbol = {
+              type: 'picture-marker',
+              url: logoIcon, // Ensure this is accessible
+              width: 40,
+              height: 40,
+            } as __esri.PictureMarkerSymbolProperties;
+      
+            return new Graphic({
+              geometry: point,
+              symbol: symbol,
+              attributes: {
+                title: place.title,
+                description: place.description,
+              },
+              popupTemplate: {
+                title: '{title}',
+                content: '{description}',
+              },
+            });
+          };
+      
+          // ✅ Update Graphics on Data Change
+          const graphics = places.map(createGraphic);
+          view.graphics.removeAll();
+          view.graphics.addMany(graphics);
+      
+          return () => {
+            view.destroy();
+          };
+         
 
-    useEffect(() => {
-      if (!map.current || !type || disabled || drawingManagerRef.current) return;
-      createDraw();
-    }, [createDraw, disabled, needUpdateFlag, type]);
+          // viewRef.current = view;
+      } catch (err) {
+          setError("Failed to load ArcGIS: " + (err as Error).message);
+      }
+  }, [zoom]);
+    // useEffect(() => {
+    //   if (!accessKey || map.current || !mapContainerRef.current) return;
+    //   let loader: Loader;
+    //   try {
+    //     loader = new Loader({
+    //       apiKey: accessKey,
+    //       version: 'weekly',
+    //       language: api.auth.getLocale(),
+    //     });
+    //   } catch (err) {
+    //     setErrMessage(t('Load google maps failed, Please check the Api key and refresh the page'));
+    //     return;
+    //   }
+
+    //   // google maps api error
+    //   const error = console.error;
+    //   console.error = (err, ...args) => {
+    //     if (err?.includes('InvalidKeyMapError')) {
+    //       setErrMessage(t('Load google maps failed, Please check the Api key and refresh the page'));
+    //     }
+    //     error(err, ...args);
+    //   };
+
+    //   Promise.all([loader.importLibrary('drawing'), loader.importLibrary('core'), loader.importLibrary('geometry')])
+    //     .then(async (res) => {
+    //       const center = await getCurrentPosition();
+    //       map.current = new google.maps.Map(mapContainerRef.current, {
+    //         zoom,
+    //         center,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP,
+    //         zoomControl: false,
+    //         streetViewControl: false,
+    //         panControl: false,
+    //         mapTypeControl: false,
+    //         fullscreenControl: false,
+    //       });
+    //       setErrMessage('');
+    //       forceUpdate([]);
+    //     })
+    //     .catch((err) => {
+    //       if (err instanceof Error) {
+    //         setErrMessage(err.message);
+    //         return;
+    //       }
+    //     });
+
+    //   return () => {
+    //     map.current?.unbindAll();
+    //     map.current = null;
+    //     drawingManagerRef.current?.unbindAll();
+    //   };
+    // }, [accessKey, api.auth, type, zoom]);
+
+    // useEffect(() => {
+    //   if (!map.current || !type || disabled || drawingManagerRef.current) return;
+    //   createDraw();
+    // }, [createDraw, disabled, needUpdateFlag, type]);
 
     useImperativeHandle(ref, () => ({
       setOverlay,
@@ -386,39 +464,39 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     }));
 
     const onReset = useMemoizedFn(() => {
-      const ok = () => {
-        toRemoveOverlay();
-        drawingManagerRef.current.setDrawingMode(drawingMode.current);
-        onChange?.(null);
-      };
-      modal.confirm({
-        title: t('Clear the canvas'),
-        content: t('Are you sure to clear the canvas?'),
-        okText: t('Confirm'),
-        cancelText: t('Cancel'),
-        getContainer: () => mapContainerRef.current,
-        onOk() {
-          ok();
-        },
-      });
+      // const ok = () => {
+      //   toRemoveOverlay();
+      //   drawingManagerRef.current.setDrawingMode(drawingMode.current);
+      //   onChange?.(null);
+      // };
+      // modal.confirm({
+      //   title: t('Clear the canvas'),
+      //   content: t('Are you sure to clear the canvas?'),
+      //   okText: t('Confirm'),
+      //   cancelText: t('Cancel'),
+      //   getContainer: () => mapContainerRef.current,
+      //   onOk() {
+      //     ok();
+      //   },
+      // });
     });
-    const app = useApp();
-    if (!accessKey || errMessage) {
-      return (
-        <Alert
-          action={
-            <Button
-              type="primary"
-              onClick={() => navigate(app.pluginSettingsManager.getRoutePath('map') + '?tab=google')}
-            >
-              {t('Go to the configuration page')}
-            </Button>
-          }
-          message={errMessage || t('Please configure the Api key first')}
-          type="error"
-        />
-      );
-    }
+    // const app = useApp();
+    // if (!accessKey || errMessage) {
+    //   return (
+    //     <Alert
+    //       action={
+    //         <Button
+    //           type="primary"
+    //           onClick={() => navigate(app.pluginSettingsManager.getRoutePath('map') + '?tab=google')}
+    //         >
+    //           {t('Go to the configuration page')}
+    //         </Button>
+    //       }
+    //       message={errMessage || t('Please configure the Api key first')}
+    //       type="error"
+    //     />
+    //   );
+    // }
 
     return (
       <div
@@ -427,7 +505,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
           height: ${height || 150}px !important;
         `}
       >
-        {!map.current && (
+        {/* {!map.current && (
           <div
             className={css`
               position: absolute;
@@ -439,7 +517,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
           >
             <Spin />
           </div>
-        )}
+        )} */}
         {!disabled ? (
           <>
             <div className="ant-row ant-row-space-between ant-row-middle">
@@ -488,7 +566,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
                   />
                 </label>
               </div>
-              {map.current && (
+           
                 <Button
                   className={css`
                     position: absolute;
@@ -538,7 +616,7 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
                 >
                   {t('Get Current Location')}
                 </Button>
-              )}
+          
             </div>
             <div
               className={css`
