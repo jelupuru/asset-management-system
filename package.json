@@ -52,8 +52,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "nwsapi": "2.2.7",
-    "antd": "5.12.8",
-     "@arcgis/core": "4.31.0"
+    "antd": "5.12.8"
   },
  
   "devDependencies": {
