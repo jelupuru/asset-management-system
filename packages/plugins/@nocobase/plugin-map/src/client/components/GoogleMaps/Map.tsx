@@ -345,13 +345,27 @@ console.log('GoogleMapsComponent', dataSource);
           });
       
           // ✅ Create Graphics for Markers
-          const places = dataSource.map(item => ({
-            title: item.name,
-            latitude: item.location.split(", ")[0],
-            longitude: item.location.split(", ")[1],
-            description: `This is ${item.name}, located in ${item.zone}, ${item.circle}, ${item.ward}.`,
-          }));
+          // const places = dataSource.map(item => ({
+          //   title: item.name,
+          //   latitude: item.location.split(", ")[0],
+          //   longitude: item.location.split(", ")[1],
+          //   description: `This is ${item.name}, located in ${item.zone}, ${item.circle}, ${item.ward}.`,
+          // }));
       
+          const places = dataSource.map(item => {
+            const nameKey = Object.keys(item).find(key => key.includes("_name")) || "name";
+            
+            return {
+              title: item[nameKey], // Set title using the first key that contains "_name"
+              latitude: item.location.split(", ")[0],
+              longitude: item.location.split(", ")[1],
+              description: `Details: ${Object.entries(item)
+                .map(([key, value]) => `<b>${key}</b>: ${value}`)
+                .join(", ")}`,
+            };
+          });
+          
+          
           const createGraphic = (place: { title: string; longitude: number; latitude: number; description: string }) => {
             const point = new Point({
               longitude: place.longitude,
