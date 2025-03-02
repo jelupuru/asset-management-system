@@ -352,18 +352,20 @@ console.log('GoogleMapsComponent', dataSource);
           //   description: `This is ${item.name}, located in ${item.zone}, ${item.circle}, ${item.ward}.`,
           // }));
       
-          const places = dataSource.map(item => {
-            const nameKey = Object.keys(item).find(key => key.includes("_name")) || "name";
-            
-            return {
+            const places = dataSource
+            .filter(item => item.location) // Filter out items without location
+            .map(item => {
+              const nameKey = Object.keys(item).find(key => key.includes("_name")) || "name";
+              
+              return {
               title: item[nameKey], // Set title using the first key that contains "_name"
               latitude: item.location.split(", ")[0],
               longitude: item.location.split(", ")[1],
               description: `Details: ${Object.entries(item)
                 .map(([key, value]) => `<b>${key}</b>: ${value}`)
                 .join(", ")}`,
-            };
-          });
+              };
+            });
           
           
           const createGraphic = (place: { title: string; longitude: number; latitude: number; description: string }) => {

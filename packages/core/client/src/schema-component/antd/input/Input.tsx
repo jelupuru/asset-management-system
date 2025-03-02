@@ -112,12 +112,16 @@ const LocationInput: React.FC<InputProps> = (props) => {
   return (
     <AntdInput
       {...props}
-      value={location}
+      value={location || value}
       placeholder="Latitude, Longitude"
-      onChange={(e) => setLocation(e.target.value)}
+      onChange={(e) => {
+        setLocation(e.target.value);
+        onChange(e);
+      }}
+      allowClear
       addonAfter={
         <Button type="primary" onClick={getLocation} icon={<EnvironmentOutlined />}>
-          Get Location.
+          Get Location
         </Button>
       }
     />
