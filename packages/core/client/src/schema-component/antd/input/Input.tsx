@@ -29,53 +29,85 @@ const LocationInput: React.FC<InputProps> = (props) => {
   const [location, setLocation] = useState('');
 
   // const getLocation = () => {
-  //   if (navigator.geolocation) {
+  //   if ("geolocation" in navigator) {
   //     navigator.geolocation.getCurrentPosition(
   //       (position) => {
   //         const lat = position.coords.latitude;
   //         const lng = position.coords.longitude;
+  //         console.log(`Latitude: ${lat}, Longitude: ${lng}`);
   //         setLocation(`${lat}, ${lng}`);
   //       },
   //       (error) => {
-  //         console.error('Error getting location:', error);
+  //         switch (error.code) {
+  //           case error.PERMISSION_DENIED:
+  //             console.error("User denied the request for Geolocation.");
+  //             break;
+  //           case error.POSITION_UNAVAILABLE:
+  //             console.error("Location information is unavailable.");
+  //             break;
+  //           case error.TIMEOUT:
+  //             console.error("The request to get user location timed out.");
+  //             break;
+  //         }
   //       },
+  //       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
   //     );
   //   } else {
-  //     console.error('Geolocation is not supported by this browser.');
+  //     console.error("Geolocation is not supported by this browser.");
   //   }
   // };
+  
 
   const { value, onChange, } = props;
-
   const getLocation = () => {
-    fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyATlK8B6RftO7M2EwMnxWvHzYBqezrE1Kg", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }
-  })
-      .then(response => response.json())
-      .then(data => {
-          console.log("Latitude:", data.location.lat);
-          console.log("Longitude:", data.location.lng);
-          const event = { target: { value: `${data.location.lat}, ${data.location.lng}` } } as React.ChangeEvent<HTMLInputElement>;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          console.log(`GPS Location: ${lat}, ${lng}`);
+          const event = { target: { value: `${lat}, ${lng}` } } as React.ChangeEvent<HTMLInputElement>;
           onChange(event);
-          setLocation(`${data.location.lat}, ${data.location.lng}`);
-      })
-      .catch(error => console.error("Error:", error));
-  
-    // fetch("https://ipinfo.io/json")
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log("IP Address:", data.ip);
-    //     console.log("Location:", data.city, data.region, data.country);
-    //     console.log("Coordinates:", data.loc); // Format: "latitude,longitude"
-  
-    //     const [latitude, longitude] = data.loc.split(",");
-    //     console.log("Latitude:", latitude);
-    //     console.log("Longitude:", longitude);
-    //     setLocation(`${latitude}, ${longitude}`);
-    //   })
-    //   .catch(error => console.error("Error fetching IP location:", error));
+          setLocation(`${lat}, ${lng}`);
+        },
+        async (error) => {
+          console.error("GPS error, using Google API:", error);
+          try {
+            const response = await fetch(
+              "https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY",
+              { method: "POST", headers: { "Content-Type": "application/json" } }
+            );
+            const data = await response.json();
+            const event = { target: { value: `${data.location.lat}, ${data.location.lng}` } } as React.ChangeEvent<HTMLInputElement>;
+            onChange(event);
+            setLocation(`${data.location.lat}, ${data.location.lng}`);
+          } catch (apiError) {
+            console.error("Google API Error:", apiError);
+          }
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
   };
+  
+  // const getLocation = () => {
+  //   fetch("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyATlK8B6RftO7M2EwMnxWvHzYBqezrE1Kg", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" }
+  // })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //         console.log("Latitude:", data.location.lat);
+  //         console.log("Longitude:", data.location.lng);
+  //         const event = { target: { value: `${data.location.lat}, ${data.location.lng}` } } as React.ChangeEvent<HTMLInputElement>;
+  //         onChange(event);
+  //         setLocation(`${data.location.lat}, ${data.location.lng}`);
+  //     })
+  //     .catch(error => console.error("Error:", error));
+  
+  // };
 
   return (
     <AntdInput
@@ -85,7 +117,7 @@ const LocationInput: React.FC<InputProps> = (props) => {
       onChange={(e) => setLocation(e.target.value)}
       addonAfter={
         <Button type="primary" onClick={getLocation} icon={<EnvironmentOutlined />}>
-          Get Location
+          Get Location.
         </Button>
       }
     />
