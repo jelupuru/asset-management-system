@@ -315,72 +315,64 @@ console.log('GoogleMapsComponent', dataSource);
     }, [value, needUpdateFlag, type, disabled, readonly, setOverlay, setFitView, setupOverlay]);
     useEffect(() => {
       if (!mapContainerRef.current) return;
-
+    
       try {
-         // Create the GHMC layer
-  const ghmcLayer = new MapImageLayer({
-    url: 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer',
-    id: 'ghmc-layer',
-    opacity: 1.0,
-  });
-  const map = new Map({
-    basemap: 'topo-vector',
-    layers: [ghmcLayer],
-  });
-         
-
-          const view = new MapView({
-              container: mapContainerRef.current,
-              map: map,
-              zoom: zoom,
-              center: [78.5, 17.5],
-          });
-
-      
-
-          view.when(() => {
-            // ghmcLayer.when(() => {
-            //   view.goTo(ghmcLayer.fullExtent).catch((error) => console.error(error));
-            // });
-          });
-      
-          // ✅ Create Graphics for Markers
-          // const places = dataSource.map(item => ({
-          //   title: item.name,
-          //   latitude: item.location.split(", ")[0],
-          //   longitude: item.location.split(", ")[1],
-          //   description: `This is ${item.name}, located in ${item.zone}, ${item.circle}, ${item.ward}.`,
-          // }));
-      
-            const places = dataSource
-            .filter(item => item.location) // Filter out items without location
+        // ✅ Create GHMC Layer
+        const ghmcLayer = new MapImageLayer({
+          url: 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC_utility/MapServer',
+          id: 'ghmc-layer',
+          opacity: 1.0,
+        });
+    
+        // ✅ Create Map
+        const map = new Map({
+          basemap: 'topo-vector',
+          layers: [ghmcLayer],
+        });
+    
+        // ✅ Create View
+        const view = new MapView({
+          container: mapContainerRef.current,
+          map: map,
+          zoom: zoom,
+          center: [78.5, 17.5],
+        });
+    
+        view.when(() => {
+          // Once the view is ready, add markers
+          if (dataSource.length === 0) return;
+    
+          // ✅ Process Data
+          const places = dataSource
+            .filter(item => item.location)
             .map(item => {
               const nameKey = Object.keys(item).find(key => key.includes("_name")) || "name";
-              
+              const [latitude, longitude] = item.location.split(", ").map(Number);
+    
               return {
-              title: item[nameKey], // Set title using the first key that contains "_name"
-              latitude: item.location.split(", ")[0],
-              longitude: item.location.split(", ")[1],
-              description: `Details: ${Object.entries(item)
-                .map(([key, value]) => `<b>${key}</b>: ${value}`)
-                .join(", ")}`,
+                title: item[nameKey],
+                latitude,
+                longitude,
+                description: `Details: ${Object.entries(item)
+                  .map(([key, value]) => `<b>${key}</b>: ${value}`)
+                  .join(", ")}`,
               };
             });
-          
-          
-          const createGraphic = (place: { title: string; longitude: number; latitude: number; description: string }) => {
+    
+          // ✅ Create Graphics
+          const graphics = places.map(place => {
             const point = new Point({
               longitude: place.longitude,
               latitude: place.latitude,
             });
-      
+    
             const symbol = {
               type: 'picture-marker',
-              url: logoIcon, // Ensure this is accessible
+              url: logoIcon,
               width: 40,
               height: 40,
             } as __esri.PictureMarkerSymbolProperties;
-      
+    
             return new Graphic({
               geometry: point,
               symbol: symbol,
@@ -393,23 +385,30 @@ console.log('GoogleMapsComponent', dataSource);
                 content: '{description}',
               },
             });
-          };
-      
-          // ✅ Update Graphics on Data Change
-          const graphics = places.map(createGraphic);
+          });
+    
+          // ✅ Update Graphics on the Map
           view.graphics.removeAll();
           view.graphics.addMany(graphics);
-      
-          return () => {
-            view.destroy();
-          };
-         
-
-          // viewRef.current = view;
+    
+          // ✅ Zoom to the Last Added Point
+          const lastPlace = places[places.length - 1]; // Get last added point
+          if (lastPlace) {
+            view.goTo({
+              center: [lastPlace.longitude, lastPlace.latitude],
+              zoom: 15, // Adjust zoom level as needed
+            }).catch(err => console.error("Error zooming to last point:", err));
+          }
+        });
+    
+        return () => {
+          view.destroy();
+        };
       } catch (err) {
-          setError("Failed to load ArcGIS: " + (err as Error).message);
+        setError("Failed to load ArcGIS: " + (err as Error).message);
       }
-  }, [zoom, dataSource]);
+    }, [zoom, dataSource]); // ✅ Re-run whenever `dataSource` updates
+    
     // useEffect(() => {
     //   if (!accessKey || map.current || !mapContainerRef.current) return;
     //   let loader: Loader;
