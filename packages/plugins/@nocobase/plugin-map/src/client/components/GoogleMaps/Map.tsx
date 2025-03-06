@@ -446,7 +446,7 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
     });
   };
   const { getCollectionJoinField } = useCollectionManager_deprecated();
-  const { openPopup } = usePopupUtils();
+  // const { openPopup } = usePopupUtils();
   /** Converts image EXIF data to a point */
   const exifToGraphic = (dataSourceitem: any) => {
     if (!dataSourceitem.location) return null;
