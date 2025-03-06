@@ -10,7 +10,15 @@
 import { SyncOutlined } from '@ant-design/icons';
 import { useFieldSchema } from '@formily/react';
 import { Loader } from '@googlemaps/js-api-loader';
-import { css, useAPIClient, useApp, useCollection_deprecated, useCollectionManager_deprecated, useNavigateNoUpdate, usePopupUtils } from '@nocobase/client';
+import {
+  css,
+  useAPIClient,
+  useApp,
+  useCollection_deprecated,
+  useCollectionManager_deprecated,
+  useNavigateNoUpdate,
+  usePopupUtils,
+} from '@nocobase/client';
 import { useMemoizedFn } from 'ahooks';
 import { Alert, App, Button, Spin } from 'antd';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
@@ -315,6 +323,15 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
       const features = getFeaturesFromPromises(images);
       const featureLayer = createLayer(features);
       view.map.add(featureLayer);
+
+      // Zoom to the last added feature
+      if (features.length > 0) {
+        const lastFeature = features[features.length - 1];
+        view.goTo({
+          target: lastFeature.geometry,
+          zoom: 15, // Adjust zoom level as needed
+        }).catch(err => console.error("Error zooming to last feature:", err));
+      }
     } catch (error) {
       console.error('Error creating FeatureLayer:', error);
     }
@@ -382,6 +399,10 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
     //   .then((featureLayer) => view.map.add(featureLayer))
     //   .catch((error) => console.error("Error creating FeatureLayer:", error));
     initializeMap(view);
+
+     
+    
+
     return () => {
       view.destroy(); // Cleanup on component unmount
     };
@@ -417,38 +438,43 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
       ],
       popupTemplate: {
         title: '{title}',
-        content: "{content}",
+        content: '{content}',
       },
       renderer: new SimpleRenderer({
         symbol: symbol,
       }),
     });
   };
-    const { getCollectionJoinField } = useCollectionManager_deprecated();
-    const { openPopup } = usePopupUtils();
+  const { getCollectionJoinField } = useCollectionManager_deprecated();
+  const { openPopup } = usePopupUtils();
   /** Converts image EXIF data to a point */
   const exifToGraphic = (dataSourceitem: any) => {
     if (!dataSourceitem.location) return null;
 
     const [latitude, longitude] = dataSourceitem.location.split(', ').map(Number);
-    const nameKey = Object.keys(dataSourceitem).find(key => key.includes("_name")) || "name";
+    const nameKey = Object.keys(dataSourceitem).find((key) => key.includes('_name')) || 'name';
     openPopup(dataSourceitem);
     const fieldPaths =
-    Array.isArray(fieldNames?.field) && fieldNames?.field.length > 1
-      ? fieldNames?.field.slice(0, -1)
-      : fieldNames?.field;
-  const cf = getCollectionJoinField([name, ...fieldPaths].flat().join('.'));
-  const data = getSource(dataSourceitem, fieldNames?.field, cf?.interface);
-  console.log('data', data);
-  if (!data?.length) return null;
+      Array.isArray(fieldNames?.field) && fieldNames?.field.length > 1
+        ? fieldNames?.field.slice(0, -1)
+        : fieldNames?.field;
+    const cf = getCollectionJoinField([name, ...fieldPaths].flat().join('.'));
+    const data = getSource(dataSourceitem, fieldNames?.field, cf?.interface);
+    console.log('data', data);
+    if (!data?.length) return null;
+    const filteredAttributes = Object.fromEntries(
+      Object.entries(dataSourceitem).filter(
+        ([key]) => !key.toLowerCase().includes('id') && !key.toLowerCase().includes('at'),
+      ),
+    );
+
     return new Graphic({
       geometry: new Point({ latitude, longitude }),
       attributes: {
-      OBJECTID: dataSourceitem.id,
       title: dataSourceitem[nameKey] || 'Unknown Location',
-      content:`Details: ${Object.entries(dataSourceitem)
-                  .map(([key, value]) => `<b>${key}</b>: ${value}`)
-                  .join(" <br/>")}`,
+      content: `Details: ${Object.entries(filteredAttributes)
+        .map(([key, value]) => `<b>${key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())}</b>: ${value || 'Not available'}`)
+        .join(' <hr/>')}`,
       },
       popupTemplate: {
       title: dataSourceitem.title || 'Unknown Location',
