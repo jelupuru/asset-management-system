@@ -453,7 +453,7 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
 
     const [latitude, longitude] = dataSourceitem.location.split(', ').map(Number);
     const nameKey = Object.keys(dataSourceitem).find((key) => key.includes('_name')) || 'name';
-    openPopup(dataSourceitem);
+ 
     const fieldPaths =
       Array.isArray(fieldNames?.field) && fieldNames?.field.length > 1
         ? fieldNames?.field.slice(0, -1)
