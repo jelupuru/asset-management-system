@@ -368,7 +368,7 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
     return nextOverlay;
   });
   const [error, setError] = useState('');
-  const arcgisServiceUrl = 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer';
+  const arcgisServiceUrl = 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC_utility/MapServer';
   const logoIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'; // Define the logoIcon variable with the correct path
 
   useEffect(() => {
@@ -376,7 +376,7 @@ export const GoogleMapsComponent = React.forwardRef((props: any, ref) => {
 
     // Create the Map
     const layer = new MapImageLayer({
-      url: 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC/MapServer',
+      url: 'https://gisserver.neogeoinfo.in/server/rest/services/GHMC/GHMC_utility/MapServer',
     });
 
     const map = new Map({
