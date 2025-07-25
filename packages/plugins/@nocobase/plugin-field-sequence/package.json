@@ -7,7 +7,7 @@
   "version": "1.5.7",
   "license": "AGPL-3.0",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/field-sequence",
+  "homepage": "https://docs.mayra.com/handbook/field-sequence",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/field-sequence",
   "devDependencies": {
     "@formily/antd-v5": "1.x",

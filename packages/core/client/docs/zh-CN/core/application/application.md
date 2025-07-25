@@ -2,7 +2,7 @@
 
 ## new Application(options)
 
-创建一个 NocoBase 应用。
+创建一个 AMS-GHMC 应用。
 
 - 类型
 
@@ -25,7 +25,7 @@ export interface ApplicationOptions {
 ```
 
 - 详细信息
-  - `apiClient`：API 请求实例，具体说明请参见：[https://docs.nocobase.com/api/sdk](https://docs.nocobase.com/api/sdk)
+  - `apiClient`：API 请求实例，具体说明请参见：[https://docs.mayra.com/api/sdk](https://docs.mayra.com/api/sdk)
   - `i18n`：国际化，具体请参考：[https://www.i18next.com/overview/api#createinstance](https://www.i18next.com/overview/api#createinstance)
   - `providers`：上下文
   - `components`：全局组件
@@ -93,7 +93,7 @@ class Application {
 }
 ```
 
-详细介绍，请参考：[APIClient](https://docs.nocobase.com/api/sdk)
+详细介绍，请参考：[APIClient](https://docs.mayra.com/api/sdk)
 
 ### app.router
 

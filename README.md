@@ -12,10 +12,10 @@ https://github.com/user-attachments/assets/a50c100a-4561-4e06-b2d2-d48098659ec0
 
 Our [blog](https://www.nocobase.com/en/blog/timeline) is regularly updated with release notes and provides a weekly summary.
 
-## What is NocoBase
+## What is AMS-GHMC
 
 NocoBase is a scalability-first, open-source no-code development platform.   
-Instead of investing years of time and millions of dollars in research and development, deploy NocoBase in a few minutes and you'll have a private, controllable, and extremely scalable no-code development platform!
+Instead of investing years of time and millions of dollars in research and development, deploy AMS-GHMC in a few minutes and you'll have a private, controllable, and extremely scalable no-code development platform!
 
 Homepage:  
 https://www.nocobase.com/  
@@ -24,7 +24,7 @@ Online Demo:
 https://demo.nocobase.com/new
 
 Documents:  
-https://docs.nocobase.com/
+https://docs.mayra.com/
 
 Forum:  
 https://forum.nocobase.com/
@@ -55,14 +55,14 @@ NocoBase adopts plugin architecture, all new functions can be realized by develo
 
 NocoBase supports three installation methods:
 
-- <a target="_blank" href="https://docs.nocobase.com/welcome/getting-started/installation/docker-compose">Installing With Docker (👍Recommended)</a>
+- <a target="_blank" href="https://docs.mayra.com/welcome/getting-started/installation/docker-compose">Installing With Docker (👍Recommended)</a>
 
   Suitable for no-code scenarios, no code to write. When upgrading, just download the latest image and reboot.
 
-- <a target="_blank" href="https://docs.nocobase.com/welcome/getting-started/installation/create-nocobase-app">Installing from create-nocobase-app CLI</a>
+- <a target="_blank" href="https://docs.mayra.com/welcome/getting-started/installation/create-nocobase-app">Installing from create-nocobase-app CLI</a>
 
   The business code of the project is completely independent and supports low-code development.
 
-- <a target="_blank" href="https://docs.nocobase.com/welcome/getting-started/installation/git-clone">Installing from Git source code</a>
+- <a target="_blank" href="https://docs.mayra.com/welcome/getting-started/installation/git-clone">Installing from Git source code</a>
 
   If you want to experience the latest unreleased version, or want to participate in the contribution, you need to make changes and debug on the source code, it is recommended to choose this installation method, which requires a high level of development skills, and if the code has been updated, you can git pull the latest code.

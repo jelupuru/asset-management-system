@@ -3,9 +3,9 @@
   "version": "1.5.7",
   "displayName": "Notification: In-app message",
   "displayName.zh-CN": "通知：站内信",
-  "description": "It supports users in receiving real-time message notifications within the NocoBase application.",
-  "description.zh-CN": "支持用户在 NocoBase 应用内实时接收消息通知。",
-  "homepage": "https://docs.nocobase.com/handbook/notification-in-app-message",
+  "description": "It supports users in receiving real-time message notifications within the AMS-GHMC application.",
+  "description.zh-CN": "支持用户在 AMS-GHMC 应用内实时接收消息通知。",
+  "homepage": "https://docs.mayra.com/handbook/notification-in-app-message",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/notification-in-app-message",
   "keywords": [
     "Notification"

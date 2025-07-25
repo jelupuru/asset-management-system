@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-action-custom-request",
   "version": "1.5.7",
   "main": "dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/action-custom-request",
+  "homepage": "https://docs.mayra.com/handbook/action-custom-request",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/action-custom-request",
   "displayName": "Action: Custom request",
   "displayName.zh-CN": "操作：自定义请求",

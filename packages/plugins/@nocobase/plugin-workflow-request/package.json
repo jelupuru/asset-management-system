@@ -7,7 +7,7 @@
   "version": "1.5.7",
   "license": "AGPL-3.0",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/workflow-request",
+  "homepage": "https://docs.mayra.com/handbook/workflow-request",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/workflow-request",
   "devDependencies": {
     "antd": "5.x",

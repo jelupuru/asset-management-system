@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -36,7 +36,7 @@ test.describe('ellipsis', () => {
       richText:
         '用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果<h1>NocoBase简介</h1><p>1234567890abcdefghijklmnopqrstuvwxyz</p><p>这是第二段落，介绍NocoBase的主要特性</p><p>这是第三段落，讨论NocoBase的应用场景</p><ul><li>企业内部系统</li><li>工作流管理</li><li>数据分析平台</li></ul>',
       markdown:
-        '用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果# NocoBase：开源无代码平台\n\n1234567890abcdefghijklmnopqrstuvwxyz\n\n## 为什么选择NocoBase？\n\n- 快速开发\n- 灵活定制\n- 开源免费\n\n### 核心功能\n\n1. 数据模型设计\n2. 界面配置\n3. 工作流引擎\n4. 权限管理\n\n> NocoBase让每个人都能轻松构建自己的软件系统',
+        '用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果# AMS-GHMC：开源无代码平台\n\n1234567890abcdefghijklmnopqrstuvwxyz\n\n## 为什么选择NocoBase？\n\n- 快速开发\n- 灵活定制\n- 开源免费\n\n### 核心功能\n\n1. 数据模型设计\n2. 界面配置\n3. 工作流引擎\n4. 权限管理\n\n> NocoBase让每个人都能轻松构建自己的软件系统',
       markdownVditor:
         '用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果用于测试多行文本的省略效果# Vditor：强大的Markdown编辑器\n\n1234567890abcdefghijklmnopqrstuvwxyz\n\n> Vditor是一个强大的Markdown编辑器，支持所见即所得、即时渲染和分屏预览等模式\n\n## 主要特性\n\n- 支持多种编辑模式\n- 丰富的快捷键\n- 自定义主题\n\n```js\nconsole.log("Vditor是NocoBase默认的Markdown编辑器");\n```\n\n更多信息请访问[Vditor官网](https://b3log.org/vditor/)',
       type: '1',

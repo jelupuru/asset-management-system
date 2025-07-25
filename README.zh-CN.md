@@ -10,10 +10,10 @@ https://github.com/nocobase/nocobase/assets/1267426/29623e45-9a48-4598-bb9e-9dd1
 ## 发布日志
 我们的[博客](https://www.nocobase.com/cn/blog/timeline)会及时更新发布日志，并每周进行汇总。
 
-## NocoBase 是什么
+## AMS-GHMC 是什么
 
 NocoBase 是一个极易扩展的开源无代码开发平台。
-不必投入几年时间、数百万资金研发，花几分钟时间部署 NocoBase，马上拥有一个私有、可控、极易扩展的无代码开发平台。
+不必投入几年时间、数百万资金研发，花几分钟时间部署 AMS-GHMC，马上拥有一个私有、可控、极易扩展的无代码开发平台。
 
 中文官网：  
 https://www.nocobase.com/cn
@@ -66,6 +66,6 @@ NocoBase 支持三种安装方式：
 
 ## 一键部署
 
-通过云厂商一键部署 NocoBase，并享受多种部署选项的灵活性：
+通过云厂商一键部署 AMS-GHMC，并享受多种部署选项的灵活性：
 
 - [阿里云](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=NocoBase%20%E7%A4%BE%E5%8C%BA%E7%89%88)

@@ -1,28 +1,28 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
 export default {
   openapi: '3.0.3',
   info: {
-    title: 'NocoBase API documentation',
+    title: 'AMS-GHMC API documentation',
     description: '',
     contact: {
-      url: 'https://github.com/nocobase/nocobase/issues',
+      url: 'https://github.com/mayratech/mayratech/issues',
     },
     license: {
       name: 'Core packages are Apache 2.0 & Plugins packages are AGPL 3.0 licensed.',
-      url: 'https://github.com/nocobase/nocobase#license',
+      url: 'https://github.com/mayratech/mayratech/issues#license',
     },
   },
   externalDocs: {
-    description: 'Find out more about NocoBase',
-    url: 'https://docs.nocobase.com/api/http',
+    description: 'Find out more about AMS-GHMC',
+    url: 'https://docs.mayra.com/api/http',
   },
   components: {
     securitySchemes: {

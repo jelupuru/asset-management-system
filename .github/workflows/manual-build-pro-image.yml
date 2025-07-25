@@ -144,7 +144,7 @@ jobs:
             APPEND_PRESET_LOCAL_PLUGINS=${{ steps.vars.outputs.var2 }}
           push: true
           tags: ${{ steps.set-tags.outputs.tags }}
-      - name: Deploy NocoBase
+      - name: Deploy AMS-GHMC
         run: |
           curl --retry 2 --location --request POST "${{secrets.NOCOBASE_DEPLOY_HOST}}${{ steps.get-tag.outputs.tag }}" \
           --header 'Content-Type: application/json' \
@@ -152,7 +152,7 @@ jobs:
               \"tag\": \"${{ steps.get-tag.outputs.tag }}\",
               \"dialect\": \"postgres\"
           }"
-      - name: Deploy NocoBase V2
+      - name: Deploy AMS-GHMC V2
         run: |
           curl --retry 2 --location --request POST "${{secrets.NOCOBASE_DEPLOY_HOST_V2}}${{ steps.get-tag.outputs.tag }}" \
           --header 'Content-Type: application/json' \

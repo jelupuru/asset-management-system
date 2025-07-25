@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -114,19 +114,19 @@ export class SwaggerManager {
     });
     return [
       {
-        name: 'NocoBase API',
+        name: 'AMS-GHMC API',
         url: this.getURL('swagger:get'),
       },
       {
-        name: 'NocoBase API - Core',
+        name: 'AMS-GHMC API - Core',
         url: this.getURL('swagger:get?ns=core'),
       },
       {
-        name: 'NocoBase API - All plugins',
+        name: 'AMS-GHMC API - All plugins',
         url: this.getURL('swagger:get?ns=plugins'),
       },
       {
-        name: 'NocoBase API - Custom collections',
+        name: 'AMS-GHMC API - Custom collections',
         url: this.getURL('swagger:get?ns=collections'),
       },
       ...plugins,

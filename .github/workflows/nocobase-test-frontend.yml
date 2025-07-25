@@ -1,4 +1,4 @@
-name: NocoBase frontEnd test
+name: AMS-GHMC frontEnd test
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

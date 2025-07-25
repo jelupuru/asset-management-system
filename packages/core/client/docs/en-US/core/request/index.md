@@ -39,7 +39,7 @@ const apiClient = new APIClient(instance);
 // Regular request
 const response = await apiClient.request({ url });
 
-// NocoBase-specific resource operations
+// AMS-GHMC-specific resource operations
 const response = await apiClient.resource('posts').list();
 
 // Request sharing
@@ -84,7 +84,7 @@ run({
 
 <code src="./demos/demo2.tsx"></code>
 
-Or it can be a NocoBase resource & action request:
+Or it can be a AMS-GHMC resource & action request:
 
 ```ts
 const { data, run } = useRequest({
@@ -121,7 +121,7 @@ For more usage, please refer to [useRequest()](https://ahooks.js.org/hooks/use-r
 function useResource(name: string, of?: string | number): IResource;
 ```
 
-Resources are the core concept of NocoBase, including:
+Resources are the core concept of AMS-GHMC, including:
 
 - Independent resources, such as `posts`
 - Related resources, such as `posts.tags`, `posts.user`, `posts.comments`

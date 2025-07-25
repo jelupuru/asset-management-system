@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -17,7 +17,7 @@ const packageJson = require('../package.json');
 const cli = new Command('create-nocobase');
 
 cli
-  .arguments('<name>', 'directory of new NocoBase app')
+  .arguments('<name>', 'directory of new AMS-GHMC app')
   .option('--quickstart', 'quickstart app creation')
   .option('-a, --all-db-dialect', 'install all database dialect dependencies')
   .option('-d, --db-dialect <dbDialect>', 'database dialect, current support sqlite/mysql/postgres', 'sqlite')

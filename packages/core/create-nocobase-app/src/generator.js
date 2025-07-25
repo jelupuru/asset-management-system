@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -180,7 +180,7 @@ class AppGenerator extends Generator {
 
     const { name } = this.context;
 
-    console.log(`Creating a new NocoBase application at ${chalk.green(name)}`);
+    console.log(`Creating a new AMS-GHMC application at ${chalk.green(name)}`);
     console.log('Creating files');
 
     this.copyDirectory({

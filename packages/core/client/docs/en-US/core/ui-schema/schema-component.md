@@ -42,7 +42,7 @@ interface SchemaComponentProviderProps {
 
 - Details
   - `designable`: The default value of `designable` in `SchemaComponentContext`
-  - `form`: NocoBase's Schema capability is based on the `FormProvider` provided by formily, and `form` is its parameter, defaulting to `createForm()`
+  - `form`: AMS-GHMC's Schema capability is based on the `FormProvider` provided by formily, and `form` is its parameter, defaulting to `createForm()`
   - `scope`: Variables used in the Schema, passed through `SchemaComponentContext`
   - `components`: Components used in the Schema, passed through `SchemaComponentContext`
 

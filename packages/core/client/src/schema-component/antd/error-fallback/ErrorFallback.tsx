@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -63,8 +63,8 @@ export const ErrorFallback: FC<FallbackProps> & {
 
   const subTitle = (
     <Trans>
-      {'This is likely a NocoBase internals bug. Please open an issue at '}
-      <Link href="https://github.com/nocobase/nocobase/issues" target="_blank">
+      {'This is likely a AMS-GHMC internals bug. Please open an issue at '}
+      <Link href="https://github.com/mayratech/mayratech/issues" target="_blank">
         here
       </Link>
     </Trans>
@@ -78,7 +78,7 @@ export const ErrorFallback: FC<FallbackProps> & {
         title={t('Render Failed')}
         subTitle={subTitle}
         extra={[
-          <Button type="primary" key="feedback" href="https://github.com/nocobase/nocobase/issues" target="_blank">
+          <Button type="primary" key="feedback" href="https://github.com/mayratech/mayratech/issues" target="_blank">
             {t('Feedback')}
           </Button>,
           <Button key="log" loading={loading} onClick={download}>

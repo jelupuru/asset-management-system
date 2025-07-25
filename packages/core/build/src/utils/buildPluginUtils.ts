@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -112,7 +112,7 @@ export function checkDependencies(packageJson: Record<string, any>, log: Log) {
     chalk.yellow(packages.join(', ')),
     chalk.yellow('dependencies'),
     chalk.yellow('devDependencies'),
-    chalk.blue(chalk.blue('https://docs.nocobase.com/development/others/deps')),
+    chalk.blue(chalk.blue('https://docs.mayra.com/development/others/deps')),
   );
 }
 

@@ -185,7 +185,7 @@ Supports asynchronous import operations that run on a separate thread. This feat
 
 ![20250119221221](https://static-docs.nocobase.com/20250119221221.png)
 
-Reference: [Import Pro](https://docs.nocobase.com/handbook/action-import-pro)
+Reference: [Import Pro](https://docs.mayra.com/handbook/action-import-pro)
 
 ### Export Pro
 
@@ -193,7 +193,7 @@ Enables asynchronous export operations that run on a separate thread, supporting
 
 ![20250119221237](https://static-docs.nocobase.com/20250119221237.png)
 
-Reference: [Export Pro](https://docs.nocobase.com/handbook/action-export-pro)
+Reference: [Export Pro](https://docs.mayra.com/handbook/action-export-pro)
 
 ### Template Print
 
@@ -210,7 +210,7 @@ The Template Printing plugin allows you to edit template files using Word, Excel
 
 ![20250119221258](https://static-docs.nocobase.com/20250119221258.png)
 
-Reference: [Template Print](https://docs.nocobase.com/handbook/action-template-print)
+Reference: [Template Print](https://docs.mayra.com/handbook/action-template-print)
 
 ### Audit Logger
 
@@ -218,7 +218,7 @@ This plugin records and tracks user activities as well as resource operation his
 
 ![20250119221319](https://static-docs.nocobase.com/20250119221319.png)
 
-Reference: [Audit Logger](https://docs.nocobase.com/handbook/audit-logger)
+Reference: [Audit Logger](https://docs.mayra.com/handbook/audit-logger)
 
 ### Workflow: Subflow
 
@@ -226,15 +226,15 @@ This feature allows one workflow to call another process. You can use variables 
 
 ![20250119221334](https://static-docs.nocobase.com/20250119221334.png)
 
-Reference: [Workflow: Subflow](https://docs.nocobase.com/handbook/workflow-subflow)
+Reference: [Workflow: Subflow](https://docs.mayra.com/handbook/workflow-subflow)
 
 ### Email Manager
 
-Integrate your Google or Microsoft email accounts into NocoBase to send, receive, view, and manage emails. Additionally, emails can be embedded directly into pages.
+Integrate your Google or Microsoft email accounts into AMS-GHMC to send, receive, view, and manage emails. Additionally, emails can be embedded directly into pages.
 
 ![20250119221346](https://static-docs.nocobase.com/20250119221346.png)
 
-Reference: [Email Manager](https://docs.nocobase.com/handbook/email-manager/usage-admin)
+Reference: [Email Manager](https://docs.mayra.com/handbook/email-manager/usage-admin)
 
 ### File Storage: S3 (Pro)
 
@@ -242,7 +242,7 @@ Supports file storage types that are compatible with the S3 protocol, including 
 
 ![20250119221404](https://static-docs.nocobase.com/20250119221404.png)
 
-Reference: [File Storage: S3(Pro)](https://docs.nocobase.com/handbook/file-manager/storage/s3-pro)
+Reference: [File Storage: S3(Pro)](https://docs.mayra.com/handbook/file-manager/storage/s3-pro)
 
 ## [v1.4.34](https://github.com/nocobase/nocobase/compare/v1.4.33...v1.4.34) - 2025-02-02
 
@@ -470,7 +470,7 @@ Reference: [File Storage: S3(Pro)](https://docs.nocobase.com/handbook/file-manag
 
 - **[Block: Map]** Fix map field in detail block should  render as map block ([#6010](https://github.com/nocobase/nocobase/pull/6010)) by @katherinehhh
 
-- **[Embed NocoBase]** The token for embed conflicts with auth by @chenos
+- **[Embed AMS-GHMC]** The token for embed conflicts with auth by @chenos
 
 ## [v1.4.19](https://github.com/nocobase/nocobase/compare/v1.4.18...v1.4.19) - 2025-01-06
 
@@ -765,7 +765,7 @@ Reference documentation:
 ![20241201171806](https://static-docs.nocobase.com/20241201171806.png)
 
 * **Notification: In-app message**
-  It supports users in receiving real-time message notifications within the NocoBase application;
+  It supports users in receiving real-time message notifications within the AMS-GHMC application;
 * **Notification: Email**
   Used for sending email notifications with built-in SMTP transport. Details;
 * **Notification: WeCom**
@@ -773,7 +773,7 @@ Reference documentation:
 
 Reference documentation:
 
-* [Notification Management](https://docs.nocobase.com/handbook/notification-manager)
+* [Notification Management](https://docs.mayra.com/handbook/notification-manager)
 
 ### User Data Synchronization
 
@@ -781,7 +781,7 @@ Reference documentation:
 
 Reference documentation:
 
-* [User Data Synchronization](https://docs.nocobase.com/handbook/user-data-sync)
+* [User Data Synchronization](https://docs.mayra.com/handbook/user-data-sync)
 
 ### Backup Manager
 
@@ -789,7 +789,7 @@ Reference documentation:
 
 Reference documentation:
 
-* [Backup Manager](https://docs.nocobase.com/handbook/backups)
+* [Backup Manager](https://docs.mayra.com/handbook/backups)
 
 ### Public Forms
 
@@ -799,7 +799,7 @@ Share public forms externally to collect information from anonymous users.
 
 Reference documentation:
 
-* [Public Forms](https://docs.nocobase.com/handbook/public-forms)
+* [Public Forms](https://docs.mayra.com/handbook/public-forms)
 
 ### Data Source: KingbaseES
 
@@ -809,7 +809,7 @@ Use the KingbaseES database as a data source, either as the main database or an 
 
 Reference documentation:
 
-* [Data Source - KingbaseES](https://docs.nocobase.com/handbook/data-source-kingbase)
+* [Data Source - KingbaseES](https://docs.mayra.com/handbook/data-source-kingbase)
 
 ### Data Source: External Oracle
 
@@ -819,7 +819,7 @@ Use external Oracle databases as a data source.
 
 Reference documentation:
 
-* [External Data Source - Oracle](https://docs.nocobase.com/handbook/data-source-external-oracle)
+* [External Data Source - Oracle](https://docs.mayra.com/handbook/data-source-external-oracle)
 
 ### Collection Field: Attachments (URL)
 
@@ -829,7 +829,7 @@ Supports URL-based attachments.
 
 Reference documentation:
 
-* [Data Table Field: Attachments (URL)](https://docs.nocobase.com/handbook/field-attachment-url)
+* [Data Table Field: Attachments (URL)](https://docs.mayra.com/handbook/field-attachment-url)
 
 ### Field Component: Mask
 
@@ -837,7 +837,7 @@ Reference documentation:
 
 Reference documentation:
 
-* [Field component: Mask](https://docs.nocobase.com/handbook/field-component-mask)
+* [Field component: Mask](https://docs.mayra.com/handbook/field-component-mask)
 
 ### Workflow: JavaScript
 
@@ -847,7 +847,7 @@ JavaScript nodes allow users to execute JavaScript within a workflow. The script
 
 Reference documentation:
 
-* [Workflow - JavaScript](https://docs.nocobase.com/handbook/workflow-javascript)
+* [Workflow - JavaScript](https://docs.mayra.com/handbook/workflow-javascript)
 
 ### Data Visualization: ECharts
 
@@ -857,7 +857,7 @@ Added ECharts, supporting funnel, radar and more charts, and providing more user
 
 Reference documentation:
 
-* [Data Visualization: Echarts](https://docs.nocobase.com/handbook/data-visualization-echarts)
+* [Data Visualization: Echarts](https://docs.mayra.com/handbook/data-visualization-echarts)
 
 ### Block: Multi-step form
 
@@ -865,7 +865,7 @@ Reference documentation:
 
 Reference documentation:
 
-* [Multi-step form](https://docs.nocobase.com/handbook/block-multi-step-from)
+* [Multi-step form](https://docs.mayra.com/handbook/block-multi-step-from)
 
 ### Block: Action Panel
 
@@ -882,7 +882,7 @@ Supports both grid and list layouts
 
 Reference documentation:
 
-* [Action Panel](https://docs.nocobase.com/handbook/block-action-panel)
+* [Action Panel](https://docs.mayra.com/handbook/block-action-panel)
 
 ## [v1.3.55](https://github.com/nocobase/nocobase/compare/v1.3.54...v1.3.55) - 2024-12-03
 
@@ -1141,7 +1141,7 @@ Reference documentation:
 - **[test]** Association fields in filter forms support configuring whether multiple selection is allowed ([#5451](https://github.com/nocobase/nocobase/pull/5451)) by @zhangzhonghe
 
 - **[client]** Add a variable named "Parent object" ([#5449](https://github.com/nocobase/nocobase/pull/5449)) by @zhangzhonghe
-Reference: [Parent object](https://docs.nocobase.com/handbook/ui/variables#parent-object)
+Reference: [Parent object](https://docs.mayra.com/handbook/ui/variables#parent-object)
 ### 🐛 Bug Fixes
 
 - **[client]**
@@ -1331,7 +1331,7 @@ Reference: [Parent object](https://docs.nocobase.com/handbook/ui/variables#paren
 ### 🎉 New Features
 
 - **[Action: Custom request]** Support for API token variables in the "Custom Request Button" configuration ([#5263](https://github.com/nocobase/nocobase/pull/5263)) by @zhangzhonghe
-Reference: [Custom request](https://docs.nocobase.com/handbook/action-custom-request)
+Reference: [Custom request](https://docs.mayra.com/handbook/action-custom-request)
 ### 🚀 Improvements
 
 - **[Collection field: Markdown(Vditor)]** Support Vidtor when selecting fields in the UI for external data sources ([#5246](https://github.com/nocobase/nocobase/pull/5246)) by @katherinehhh
@@ -1412,9 +1412,9 @@ Reference: [Custom request](https://docs.nocobase.com/handbook/action-custom-req
 - **[Authentication]** support line break in system title ([#5211](https://github.com/nocobase/nocobase/pull/5211)) by @chenos
 
 - **[Workflow: SQL node]** Change result data structure of SQL node to only contains data. ([#5189](https://github.com/nocobase/nocobase/pull/5189)) by @mytharcher
-Reference: [SQL Operation](https://docs.nocobase.com/handbook/workflow/nodes/sql)
+Reference: [SQL Operation](https://docs.mayra.com/handbook/workflow/nodes/sql)
 - **[Access control]** Make the `Permissions` Tab pannel of the `Users & Permissions` configuration page expandable. ([#5216](https://github.com/nocobase/nocobase/pull/5216)) by @zhangzhonghe
-Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#development-guide)
+Reference: [Development Guide](https://docs.mayra.com/handbook/acl#development-guide)
 - **[Action: Batch edit]** batch updated and batch edit, change 'All' to 'Entire collection" ([#5200](https://github.com/nocobase/nocobase/pull/5200)) by @katherinehhh
 
 ### 🐛 Bug Fixes
@@ -4028,7 +4028,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(plugin-workflow): fix condition branch node finding logic (fix #3082) (#3128) [`#3082`](https://github.com/nocobase/nocobase/issues/3082)
+- fix(plugin-workflow): fix condition branch node finding logic (fix #3082) (#3128) [`#3082`](https://github.com/mayratech/mayratech/issues/3082)
 
 ### Commits
 
@@ -4918,7 +4918,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(plugin-fm): adjust upload file size to 1G which same as default on server side (#2236) [`#2215`](https://github.com/nocobase/nocobase/issues/2215)
+- fix(plugin-fm): adjust upload file size to 1G which same as default on server side (#2236) [`#2215`](https://github.com/mayratech/mayratech/issues/2215)
 
 ### Commits
 
@@ -5470,7 +5470,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(plugin-workflow): fix todo list form read-pretty for non-assigneed user (#1615) [`#1572`](https://github.com/nocobase/nocobase/issues/1572)
+- fix(plugin-workflow): fix todo list form read-pretty for non-assigneed user (#1615) [`#1572`](https://github.com/mayratech/mayratech/issues/1572)
 
 ### Commits
 
@@ -5777,7 +5777,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(client): page title translation doesn't work [`#838`](https://github.com/nocobase/nocobase/issues/838)
+- fix(client): page title translation doesn't work [`#838`](https://github.com/mayratech/mayratech/issues/838)
 
 ### Commits
 
@@ -6078,9 +6078,9 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(plugin-workflow): fix value type for DatePicker to moment (#815) (#819) [`#815`](https://github.com/nocobase/nocobase/issues/815)
-- fix(plugin-users): fix update profile 500 (#766) (#767) [`#766`](https://github.com/nocobase/nocobase/issues/766)
-- fix: db version check (#749) [`#742`](https://github.com/nocobase/nocobase/issues/742)
+- fix(plugin-workflow): fix value type for DatePicker to moment (#815) (#819) [`#815`](https://github.com/mayratech/mayratech/issues/815)
+- fix(plugin-users): fix update profile 500 (#766) (#767) [`#766`](https://github.com/mayratech/mayratech/issues/766)
+- fix: db version check (#749) [`#742`](https://github.com/mayratech/mayratech/issues/742)
 
 ### Commits
 
@@ -6105,7 +6105,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 - chore(versions): 😊 publish v0.7.4-alpha.4 [`#727`](https://github.com/nocobase/nocobase/pull/727)
 - fix: sync table sort to export [`#723`](https://github.com/nocobase/nocobase/pull/723)
-- feat: full version of the NocoBase dockerfile [`#719`](https://github.com/nocobase/nocobase/pull/719)
+- feat: full version of the AMS-GHMC dockerfile [`#719`](https://github.com/nocobase/nocobase/pull/719)
 - fix(plugin-workflow): fix extend collection [`#708`](https://github.com/nocobase/nocobase/pull/708)
 - fix: DB_TABLE_PREFIX doesn't get applied [`#710`](https://github.com/nocobase/nocobase/pull/710)
 - feat: default value [`#679`](https://github.com/nocobase/nocobase/pull/679)
@@ -6194,7 +6194,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix: field permissions cannot be saved (#605) [`#599`](https://github.com/nocobase/nocobase/issues/599)
+- fix: field permissions cannot be saved (#605) [`#599`](https://github.com/mayratech/mayratech/issues/599)
 
 ### Commits
 
@@ -6306,7 +6306,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix(client): package path (fix #503) (#504) [`#503`](https://github.com/nocobase/nocobase/issues/503)
+- fix(client): package path (fix #503) (#504) [`#503`](https://github.com/mayratech/mayratech/issues/503)
 
 ### Commits
 
@@ -6380,7 +6380,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- refactor(plugin-workflow): multiple instances and event management (fix #384) (#408) [`#384`](https://github.com/nocobase/nocobase/issues/384) [`#384`](https://github.com/nocobase/nocobase/issues/384)
+- refactor(plugin-workflow): multiple instances and event management (fix #384) (#408) [`#384`](https://github.com/mayratech/mayratech/issues/384) [`#384`](https://github.com/mayratech/mayratech/issues/384)
 
 ### Commits
 
@@ -6932,7 +6932,7 @@ Reference: [Development Guide](https://docs.nocobase.com/handbook/acl#developmen
 
 ### Fixed
 
-- fix #9 (#11) [`#9`](https://github.com/nocobase/nocobase/issues/9) [`#9`](https://github.com/nocobase/nocobase/issues/9)
+- fix #9 (#11) [`#9`](https://github.com/mayratech/mayratech/issues/9) [`#9`](https://github.com/mayratech/mayratech/issues/9)
 
 ### Commits
 

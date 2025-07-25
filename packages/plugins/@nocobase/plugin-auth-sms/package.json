@@ -6,7 +6,7 @@
   "description.zh-CN": "通过短信验证码认证身份。",
   "version": "1.5.7",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/auth-sms",
+  "homepage": "https://docs.mayra.com/handbook/auth-sms",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/auth-sms",
   "license": "AGPL-3.0",
   "devDependencies": {

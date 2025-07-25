@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-auth",
   "version": "1.5.7",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/auth",
+  "homepage": "https://docs.mayra.com/handbook/auth",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/auth",
   "devDependencies": {
     "@ant-design/icons": "5.x",

@@ -6,7 +6,7 @@
   "description": "Provides data and field type for administrative divisions of China.",
   "description.zh-CN": "提供中国行政区划数据和字段类型。",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/china-region",
+  "homepage": "https://docs.mayra.com/handbook/china-region",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/china-region",
   "license": "AGPL-3.0",
   "devDependencies": {

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "NocoBase API - File manager plugin"
+    "title": "AMS-GHMC API - File manager plugin"
   },
   "tags": [],
   "paths": {

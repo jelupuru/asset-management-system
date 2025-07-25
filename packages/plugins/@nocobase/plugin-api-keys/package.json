@@ -7,7 +7,7 @@
   "version": "1.5.7",
   "license": "AGPL-3.0",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/api-keys",
+  "homepage": "https://docs.mayra.com/handbook/api-keys",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/api-keys",
   "keywords": [
     "Authentication"

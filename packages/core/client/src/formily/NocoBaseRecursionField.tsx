@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -252,7 +252,7 @@ export const useIsInNocoBaseRecursionFieldContext = () => {
 
 /**
  * Based on @formily/react v2.3.2 RecursionField component
- * Modified to better adapt to NocoBase's needs
+ * Modified to better adapt to AMS-GHMC's needs
  */
 export const NocoBaseRecursionField: ReactFC<INocoBaseRecursionFieldProps> = React.memo((props) => {
   const {
@@ -354,7 +354,7 @@ export const NocoBaseRecursionField: ReactFC<INocoBaseRecursionFieldProps> = Rea
 
   if (!fieldSchema) return <Fragment />;
 
-  // The original fieldSchema is still passed down to maintain compatibility with NocoBase usage.
+  // The original fieldSchema is still passed down to maintain compatibility with AMS-GHMC usage.
   // fieldSchema stores some user-defined content. If we pass down mergedFieldSchema instead,
   // some default schema values would also be saved in fieldSchema.
   return (

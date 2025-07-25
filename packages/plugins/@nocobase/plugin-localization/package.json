@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-localization",
   "version": "1.5.7",
   "main": "dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/localization-management",
+  "homepage": "https://docs.mayra.com/handbook/localization-management",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/localization-management",
   "license": "AGPL-3.0",
   "devDependencies": {

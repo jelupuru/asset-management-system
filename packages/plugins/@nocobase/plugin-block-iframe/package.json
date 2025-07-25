@@ -7,7 +7,7 @@
   "version": "1.5.7",
   "license": "AGPL-3.0",
   "main": "./dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/block-iframe",
+  "homepage": "https://docs.mayra.com/handbook/block-iframe",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/block-iframe",
   "devDependencies": {
     "@ant-design/icons": "5.x",

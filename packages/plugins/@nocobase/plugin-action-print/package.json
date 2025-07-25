@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-action-print",
   "version": "1.5.7",
   "main": "dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/action-print",
+  "homepage": "https://docs.mayra.com/handbook/action-print",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/action-print",
   "displayName": "Action: Print",
   "displayName.zh-CN": "操作：打印",

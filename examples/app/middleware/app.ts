@@ -32,7 +32,7 @@ const app = new Application({
 
 // Same as Koa
 app.use(async (ctx, next) => {
-  ctx.body = 'Hello NocoBase';
+  ctx.body = 'Hello AMS-GHMC';
   await next();
 });
 

@@ -478,7 +478,7 @@ const parseExpression = useLazy<typeof import('cron-parser').parseExpression>(
 
 - **[区块：地图]** 详情区块中的地图字段，应显示地图 ([#6010](https://github.com/nocobase/nocobase/pull/6010)) by @katherinehhh
 
-- **[嵌入 NocoBase]** Embed 的 token 与 auth 存在冲突 by @chenos
+- **[嵌入 AMS-GHMC]** Embed 的 token 与 auth 存在冲突 by @chenos
 
 ## [v1.4.19](https://github.com/nocobase/nocobase/compare/v1.4.18...v1.4.19) - 2025-01-06
 
@@ -770,7 +770,7 @@ const parseExpression = useLazy<typeof import('cron-parser').parseExpression>(
 
 ![20241201171806](https://static-docs.nocobase.com/20241201171806.png)
 
-- 站内信：支持用户在 NocoBase 应用内实时接收消息通知；
+- 站内信：支持用户在 AMS-GHMC 应用内实时接收消息通知；
 - 电子邮件：通过电子邮件渠道发送通知，目前只支持 SMTP 传输方式；
 - 企微通知：通过企业微信渠道发送通知。
 
@@ -1347,7 +1347,7 @@ JavaScript 节点允许用户在工作流中执行一段自定义的服务端 Ja
 
 ### 🐛 修复
 
-- **[client]** 修复在使用联动规则时报错的问题（通过 create-nocobase-app 安装的 NocoBase） ([#5249](https://github.com/nocobase/nocobase/pull/5249)) by @zhangzhonghe
+- **[client]** 修复在使用联动规则时报错的问题（通过 create-nocobase-app 安装的 AMS-GHMC） ([#5249](https://github.com/nocobase/nocobase/pull/5249)) by @zhangzhonghe
 
 ## [v1.3.20-beta](https://github.com/nocobase/nocobase/compare/v1.3.19-beta...v1.3.20-beta) - 2024-09-10
 

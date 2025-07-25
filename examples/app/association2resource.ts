@@ -10,7 +10,7 @@ curl --location --request POST 'http://localhost:13000/api/articles:create' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "title": "My first article",
-    "content": "Hello NocoBase!",
+    "content": "Hello AMS-GHMC!",
     "user": {
       "name": "user 1"
     }

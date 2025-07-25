@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-theme-editor",
   "version": "1.5.7",
   "main": "dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/theme-editor",
+  "homepage": "https://docs.mayra.com/handbook/theme-editor",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/theme-editor",
   "displayName": "Theme editor",
   "displayName.zh-CN": "主题编辑器",

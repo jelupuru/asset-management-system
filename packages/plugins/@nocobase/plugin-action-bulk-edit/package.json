@@ -2,7 +2,7 @@
   "name": "@nocobase/plugin-action-bulk-edit",
   "version": "1.5.7",
   "main": "dist/server/index.js",
-  "homepage": "https://docs.nocobase.com/handbook/action-bulk-edit",
+  "homepage": "https://docs.mayra.com/handbook/action-bulk-edit",
   "homepage.zh-CN": "https://docs-cn.nocobase.com/handbook/action-bulk-edit",
   "displayName": "Action: Batch edit",
   "displayName.zh-CN": "操作：批量编辑",

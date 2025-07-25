@@ -1,9 +1,9 @@
 /**
- * This file is part of the NocoBase (R) project.
- * Copyright (c) 2020-2024 NocoBase Co., Ltd.
- * Authors: NocoBase Team.
+ * This file is part of the AMS-GHMC (R) project.
+ * Copyright (c) 2020-2024 AMS-GHMC Co., Ltd.
+ * Authors: AMS-GHMC Team.
  *
- * This project is dual-licensed under AGPL-3.0 and NocoBase Commercial License.
+ * This project is dual-licensed under AGPL-3.0 and AMS-GHMC Commercial License.
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
@@ -212,13 +212,13 @@ interface CreateMobilePageOptions extends Omit<CreatePageOptions, 'type'> {
 interface ExtendUtils {
   page?: Page;
   /**
-   * 根据配置，生成一个 NocoBase 的页面
+   * 根据配置，生成一个 AMS-GHMC 的页面
    * @param pageConfig 页面配置
    * @returns
    */
   mockPage: (pageConfig?: PageConfig) => NocoPage;
   /**
-   * 根据配置，生成一个移动端 NocoBase 的页面
+   * 根据配置，生成一个移动端 AMS-GHMC 的页面
    * @param pageConfig 页面配置
    * @returns
    */
@@ -708,7 +708,7 @@ const updateUidOfPageSchema = (uiSchema: any) => {
 };
 
 /**
- * 在 NocoBase 中创建一个页面
+ * 在 AMS-GHMC 中创建一个页面
  */
 const createPage = async (options?: CreatePageOptions) => {
   const { type = 'page', url, name, pageSchema, keepUid, pageUid: pageUidFromOptions } = options || {};
@@ -787,7 +787,7 @@ const createPage = async (options?: CreatePageOptions) => {
 };
 
 /**
- * 在 NocoBase 中创建一个移动端页面
+ * 在 AMS-GHMC 中创建一个移动端页面
  */
 const createMobilePage = async (options?: CreateMobilePageOptions) => {
   const { type = 'page', url, name, pageSchema, keepUid } = options || {};
@@ -977,7 +977,7 @@ const deleteMobileRoutes = async (mobileRouteId: number) => {
 };
 
 /**
- * 根据页面 uid 删除一个 NocoBase 的页面
+ * 根据页面 uid 删除一个 AMS-GHMC 的页面
  */
 const deletePage = async (pageUid: string) => {
   const api = await request.newContext({

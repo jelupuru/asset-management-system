@@ -4,8 +4,8 @@
   "main": "./dist/server/index.js",
   "displayName": "Hello",
   "displayName.zh-CN": "Hello",
-  "description": "A simple NocoBase plugin example",
-  "description.zh-CN": "一个简单的 NocoBase 插件",
+  "description": "A simple AMS-GHMC plugin example",
+  "description.zh-CN": "一个简单的 AMS-GHMC 插件",
   "devDependencies": {
     "@ant-design/icons": "5.x",
     "@formily/react": "2.x",

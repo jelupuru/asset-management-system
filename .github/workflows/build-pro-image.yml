@@ -164,7 +164,7 @@ jobs:
             APPEND_PRESET_LOCAL_PLUGINS=${{ steps.vars.outputs.var2 }}
           push: true
           tags: ${{ steps.set-tags.outputs.tags }}
-      - name: Deploy NocoBase
+      - name: Deploy AMS-GHMC
         env:
           IMAGE_TAG: ${{ steps.meta.outputs.tags }}
         run: |
@@ -177,7 +177,7 @@ jobs:
                 \"tag\": \"$APP_NAME\",
                 \"dialect\": \"postgres\"
             }"
-      - name: Deploy NocoBase V2
+      - name: Deploy AMS-GHMC V2
         env:
           IMAGE_TAG: ${{ steps.meta.outputs.tags }}
         run: |
