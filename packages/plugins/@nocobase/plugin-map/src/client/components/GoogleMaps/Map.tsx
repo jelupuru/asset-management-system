@@ -7,20 +7,14 @@
  * For more information, please refer to: https://www.nocobase.com/agreement.
  */
 
-import { SyncOutlined } from '@ant-design/icons';
 import { useFieldSchema } from '@formily/react';
-import { Loader } from '@googlemaps/js-api-loader';
-import { css, useAPIClient, useApp, useCollection_deprecated, useNavigateNoUpdate } from '@nocobase/client';
-import { useMemoizedFn } from 'ahooks';
-import { Alert, App, Button, Spin } from 'antd';
-import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { defaultImage } from '../../constants';
+import { useAPIClient, useCollection_deprecated, useCollection } from '@nocobase/client';
+import { App } from 'antd';
+import React, { useRef, useState } from 'react';
 import { useMapConfiguration } from '../../hooks';
 import { useMapTranslation } from '../../locale';
 import { MapEditorType } from '../../types';
 import { useMapHeight } from '../hook';
-import { Search } from './Search';
-import { getCurrentPosition, getIcon } from './utils';
 import { arcgisToGeoJSON } from '@esri/arcgis-to-geojson-utils';
 import { GoogleMapsComponent as MapOne } from './MapOne';
 import { GoogleMapsComponent as MapTwo } from './MapTwo';
@@ -150,26 +144,10 @@ export const GoogleMapsComponent = React.forwardRef<GoogleMapForwardedRefProps, 
     const { modal } = App.useApp();
     const height = useMapHeight();
 
-    const obj = {
-      _isJSONSchemaObject: true,
-      version: '2.0',
-      'x-uid': 'zbjhncq2cq9',
-      type: 'void',
-      'x-component': 'MapBlock',
-      'x-use-component-props': 'useMapBlockProps',
-      'x-app-version': '1.5.7',
-      'x-action-context': {
-        dataSource: 'main',
-        collection: 'community_halls_data',
-      },
-      'x-async': false,
-      'x-index': 2,
-      name: 'e36u0nf11zu',
-    };
-
-    const collectionName = fieldSchema['x-action-context']?.collection;
+    const collection = useCollection();
+    console.log('collectionName in map', collection?.name);
     // Conditional rendering based on collection name
-    if (collectionName === 'engineering_data' || !collectionName) {
+    if (collection?.name === 'engineering_data' || !collection?.name) {
       return <MapOne ref={ref} {...props} />;
     } else {
       return <MapTwo ref={ref} {...props} />;

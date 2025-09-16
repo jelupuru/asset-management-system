@@ -9,44 +9,30 @@
 
 import { SyncOutlined } from '@ant-design/icons';
 import { useFieldSchema } from '@formily/react';
-import { Loader } from '@googlemaps/js-api-loader';
 import {
   css,
   useAPIClient,
-  useApp,
   useCollection_deprecated,
   useCollectionManager_deprecated,
   useNavigateNoUpdate,
-  usePopupUtils,
 } from '@nocobase/client';
 import { useMemoizedFn } from 'ahooks';
-import { Alert, App, Button, Spin } from 'antd';
+import { Alert, App, Button } from 'antd';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { defaultImage } from '../../constants';
 import { useMapConfiguration } from '../../hooks';
 import { useMapTranslation } from '../../locale';
 import { MapEditorType } from '../../types';
 import { useMapHeight } from '../hook';
-import { Search } from './Search';
-import { getCurrentPosition, getIcon } from './utils';
+import { getIcon } from './utils';
 import Map from '@arcgis/core/Map.js';
 import MapView from '@arcgis/core/views/MapView.js';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer.js';
-import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer.js';
 import Graphic from '@arcgis/core/Graphic.js';
-import Sketch from '@arcgis/core/widgets/Sketch.js';
 import MapImageLayer from '@arcgis/core/layers/MapImageLayer';
 import Point from '@arcgis/core/geometry/Point';
-import Polyline from '@arcgis/core/geometry/Polyline';
-import Polygon from '@arcgis/core/geometry/Polygon';
-import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol';
-import SimpleLineSymbol from '@arcgis/core/symbols/SimpleLineSymbol';
-import SimpleFillSymbol from '@arcgis/core/symbols/SimpleFillSymbol';
-import Popup from '@arcgis/core/widgets/Popup'; // ✅ Ensure Popup is imported
 import SimpleRenderer from '@arcgis/core/renderers/SimpleRenderer';
 import TextSymbol from '@arcgis/core/symbols/TextSymbol';
-import PopupTemplate from '@arcgis/core/PopupTemplate.js';
-import * as locator from '@arcgis/core/rest/locator';
 import * as promiseUtils from '@arcgis/core/core/promiseUtils';
 import '@arcgis/core/assets/esri/themes/light/main.css'; // ArcGIS Styles
 import { getSource } from '../../utils';
