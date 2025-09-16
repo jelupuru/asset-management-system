@@ -24,7 +24,6 @@ import { getCurrentPosition, getIcon } from './utils';
 import { arcgisToGeoJSON } from '@esri/arcgis-to-geojson-utils';
 import { GoogleMapsComponent as MapOne } from './MapOne';
 import { GoogleMapsComponent as MapTwo } from './MapTwo';
-import { CollectionName } from 'packages/plugins/@nocobase/plugin-data-source-manager/src/client/component/CollectionsManager/components/CollectionName';
 export type OverlayOptions = google.maps.PolygonOptions & google.maps.MarkerOptions & google.maps.PolylineOptions;
 
 export const getDrawingMode = (type: MapEditorType) => {
